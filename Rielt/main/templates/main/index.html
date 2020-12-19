@@ -1,0 +1,42 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Home page
+{% endblock %}
+
+{% block content %}
+    <h1>Главная страница</h1>
+    <p>
+        Агентство недвижимости — специализированная коммерческая организация, осуществляющая как правило посреднические услуги между продавцом и конечным покупателем на рынке недвижимости.
+    </p>
+    <p>Виды предоставляемых услуг</p>
+    <ul>
+        <li>Покупка-продажа, аренда недвижимости.</li>
+        <li>Поиск продавцов и покупателей.</li>
+        <li>Юридическое сопровождение сделки.</li>
+        <li>Консультации по вопросам сделок с недвижимостью.</li>
+    </ul>
+    {% verbatim %}
+        <div class="container" id="emp">
+            <h2 class="mt-2">Наши сотрудники</h2>
+            <table class="table table-bordered table-dark mt-3">
+                <tr class="bg-warning text-dark">
+                    <th>ФИО</th>
+                    <th>Должность</th>
+                    <th>Телефон</th>
+                </tr>
+                <tr v-for="el in employees">
+                    <td>{{ el.FIO }}</td>
+                    <td>{{ el.post }}</td>
+                    <td>{{ el.tel }}</td>
+                </tr>
+            </table>
+        </div>
+    {% endverbatim %}
+{% endblock %}
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.20.1/bootstrap-vue.min.js"></script>
+    <script src="/static/emp.js"></script>
+{% endblock %}

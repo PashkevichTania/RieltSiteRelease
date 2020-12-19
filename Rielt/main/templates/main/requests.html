@@ -1,0 +1,107 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Requests
+{% endblock %}
+{% block link %}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/r-2.2.6/sc-2.0.3/datatables.min.css"/>
+{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-md-center">
+    <div class="card text-white bg-primary mb-3 w-70">
+        <div class="card-header d-flex justify-content-center"><h3>Поиск квартир</h3></div>
+        <div class="card-body">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="row d-flex justify-content-end">
+                    <div class="col-md-auto ">
+                        {{ form1.as_p }}
+                    </div>
+                    <div class="col-md-auto">
+                        {{ form2.as_p }}
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-end">
+                    <div class="col-md-auto">
+                        {{ form3.as_p }}
+                    </div>
+                    <div class="col-md-auto">
+                        {{ form4.as_p }}
+                    </div>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input type="Submit" name="submit" value="Поиск" class="btn btn-light btn-md"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    {% if submitbutton == "Поиск" %}
+        <table class="table table-bordered table-dark mt-3" id="my_datatable">
+        <thead>
+            <tr class="bg-warning text-dark">
+                <th>Дата составления заказа</th>
+                <th>Наименование объекта</th>
+                <th>Площадь м2</th>
+                <th>Кол-во комнат</th>
+                <th>Адрес</th>
+                <th>Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for el in property %}
+            <tr>
+                <td>{{ el.dateOfOrder }}</td>
+                <td>{{ el.name }}</td>
+                <td>{{ el.area }}</td>
+                <td>{{ el.rooms }}</td>
+                <td>{{ el.address }}</td>
+                <td>{{ el.price }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+{% endblock %}
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/r-2.2.6/sc-2.0.3/datatables.min.js"></script>
+    <script>
+        $('#my_datatable').DataTable({
+            order:[[5,'desc']],
+            language: {
+                "lengthMenu": "Показывать по _MENU_ записей на странице",
+                "emptyTable": "Пусто",
+                "info": "Показаны страницы _PAGE_ из _PAGES_",
+                "infoEmpty": "Нет доступных записей",
+                "infoFiltered": "(Отфильтровано из _MAX_ записей)",
+                "loadingRecords": "Загрузка...",
+                "processing": "Процессинг...",
+                "search": "Поиск:",
+                "zeroRecords": "Извините, ничего не найдено",
+                "paginate": {
+                    "first": "Первая",
+                    "last": "Последняя",
+                    "next": "Следующая",
+                    "previous": "Предыдущая",
+                },
+                "aria": {
+                    "sortAscending":  ": Сортировка по возрастанию",
+                    "sortDescending": ": Сортировка по убыванию"
+                }
+            },
+        });
+    </script>
+{% endblock %}

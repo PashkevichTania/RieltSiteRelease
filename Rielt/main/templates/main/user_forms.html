@@ -1,0 +1,67 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+User forms
+{% endblock %}
+
+{% block content %}
+    <h1>Добавить покупателя\продавца\недвижимость</h1>
+    <div class="container" id="empty">
+        <b-tabs content-class="mt-3">
+            <b-tab title="Добавить покупателя" active>
+                <form method="post" id="buyer">
+                    {% csrf_token %}
+                    {{ form_buy.user}}<br>
+                    {{ form_buy.fio }}<br>
+                    {{ form_buy.address }}<br>
+                    {{ form_buy.tel }}<br>
+                    {{ form_buy.passportCode }}
+                    <span class="help-block ml-3 text-muted">2 буквы и 7 цифр</span><br><br>
+                    {{ form_buy.passportNumber }}
+                    <span class="help-block ml-3 text-muted">14 символов</span>
+                    <br>
+                    <button type="submit" form="buyer" class="btn btn-success mt-5">Добавить</button>
+                <span>{{ error_buy }}</span>
+                </form>
+            </b-tab>
+            <b-tab title="Добавить продавца">
+                <form method="post" id="seller">
+                    {% csrf_token %}
+                    {{ form_sell.user}}<br>
+                    {{ form_sell.fio}}<br>
+                    {{ form_sell.address }}<br>
+                    {{ form_sell.tel }}<br>
+                    {{ form_sell.passportCode }}
+                    <span class="help-block ml-3 text-muted">2 буквы и 7 цифр</span><br><br>
+                    {{ form_sell.passportNumber }}
+                    <span class="help-block ml-3 text-muted">14 символов</span>
+                    <br>
+                    <button type="submit" form="seller" class="btn btn-success mt-5">Добавить</button>
+                <span>{{ error_sell }}</span>
+                </form>
+            </b-tab>
+            <b-tab title="Добавить недвижимость">
+                <form method="post" id="prop">
+                    {% csrf_token %}
+                    {{ form_prop.dateOfOrder }}<br>
+                    {{ form_prop.name }}<br>
+                    {{ form_prop.area }}<br>
+                    {{ form_prop.rooms }}<br>
+                    {{ form_prop.address }}<br>
+                    {{ form_prop.price }}<br>
+                    {{ form_prop.seller }}
+                    <span class="help-block ml-3 text-muted">Выберите продавца</span>
+                    <br>
+                    <button type="submit" form="prop" class="btn btn-success mt-5">Добавить</button>
+                <span>{{ error_prop }}</span>
+                </form>
+            </b-tab>
+        </b-tabs>
+    </div>
+
+{% endblock %}
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.20.1/bootstrap-vue.min.js"></script>
+    <script src="/static/empty.js"></script>
+{% endblock %}

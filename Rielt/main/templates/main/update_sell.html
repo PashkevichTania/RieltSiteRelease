@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    User forms
+{% endblock %}
+
+{% block content %}
+    <h1>Изменить покупателя</h1>
+    <form method="post" id="sell">
+        {% csrf_token %}
+        {{ form.fio }}<br>
+        {{ form.address }}<br>
+        {{ form.tel }}<br>
+        {{ form.passportCode }}
+        <span class="help-block ml-3 text-muted">2 буквы и 7 цифр</span><br><br>
+        {{ form.passportNumber }}
+        <span class="help-block ml-3 text-muted">14 символов</span>
+        <br>
+        <button type="submit" form="sell" class="btn btn-success mt-5">Изменить</button>
+        {% url 'user' as url_user %}
+        <a class="btn btn-primary active mt-5 ml-3" href="{{ url_user }}">Вернуться назад</a>
+    </form>
+{% endblock %}
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.20.1/bootstrap-vue.min.js"></script>
+    <script src="/static/empty.js"></script>
+{% endblock %}

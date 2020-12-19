@@ -1,0 +1,243 @@
+[
+{
+  "model": "main.employees",
+  "pk": "4dfc0d01-d3c6-4608-a56e-9daa91cde080",
+  "fields": {
+    "FIO": "Эмени Д.В.",
+    "post": "Риэлтер",
+    "dateOfEmployment": "2000-10-15",
+    "address": "Некрополь",
+    "tel": 234121
+  }
+},
+{
+  "model": "main.employees",
+  "pk": "6c603c9a-e9c5-4e5b-bfef-da805858b1e5",
+  "fields": {
+    "FIO": "Праудмур Д.Д.",
+    "post": "Гендиректор",
+    "dateOfEmployment": "2000-10-10",
+    "address": "Борлаус",
+    "tel": 546565
+  }
+},
+{
+  "model": "main.employees",
+  "pk": "75784550-0ad0-4bd5-84ed-96ab6388b6f3",
+  "fields": {
+    "FIO": "Ветрокрылая С.А.",
+    "post": "Юрист",
+    "dateOfEmployment": "2000-11-10",
+    "address": "Оргримар",
+    "tel": 234135
+  }
+},
+{
+  "model": "main.employees",
+  "pk": "a2b8971a-1633-484c-9df2-fd877c37c219",
+  "fields": {
+    "FIO": "Рукоглодка М.И.",
+    "post": "Бухгалтер",
+    "dateOfEmployment": "2001-02-02",
+    "address": "Малдраксус",
+    "tel": 234131
+  }
+},
+{
+  "model": "main.employees",
+  "pk": "fd8d87cb-fbd8-4a33-bd54-c85c865f407b",
+  "fields": {
+    "FIO": "Марилет Ю.В.",
+    "post": "Юрист",
+    "dateOfEmployment": "2000-11-23",
+    "address": "Малдраксус",
+    "tel": 234130
+  }
+},
+{
+  "model": "main.clientbuy",
+  "pk": "0ac9cbfa-4b6c-4c7b-acde-d17ab879bbd8",
+  "fields": {
+    "FIO": "Репин Михаил Иванович",
+    "address": "Огоренко 8",
+    "tel": 322323,
+    "passportCode": "HB7734435",
+    "passportNumber": "23423343453453"
+  }
+},
+{
+  "model": "main.clientbuy",
+  "pk": "61cd8eb2-cf68-4a54-aa51-0975ea56fc8e",
+  "fields": {
+    "FIO": "Лищенко Игорь Иванович",
+    "address": "Лесная 23",
+    "tel": 235676,
+    "passportCode": "HB2343463",
+    "passportNumber": "32545735654654"
+  }
+},
+{
+  "model": "main.clientbuy",
+  "pk": "99cdc5c2-2cd6-42d4-8b26-20dd7756ab4f",
+  "fields": {
+    "FIO": "Петров Петр Петрович",
+    "address": "Ленина 14",
+    "tel": 435445,
+    "passportCode": "HB7777777",
+    "passportNumber": "11111111111111"
+  }
+},
+{
+  "model": "main.clientsell",
+  "pk": "0e0b6525-06f8-4c69-8654-230ad405f6d9",
+  "fields": {
+    "FIO": "Иванов Иван Иванович",
+    "address": "Ленина 15",
+    "tel": 213322,
+    "passportCode": "HB2364564",
+    "passportNumber": "14435457567345"
+  }
+},
+{
+  "model": "main.clientsell",
+  "pk": "dcb56290-0e82-4034-b0bc-4011918316b5",
+  "fields": {
+    "FIO": "Ленченко Иван Юрьевич",
+    "address": "Ленина 2",
+    "tel": 234134,
+    "passportCode": "HB3435545",
+    "passportNumber": "44444444443232"
+  }
+},
+{
+  "model": "main.clientsell",
+  "pk": "deae2a80-330d-4830-9077-5dd126b433e1",
+  "fields": {
+    "FIO": "Дубов Владислав Юрьевич",
+    "address": "Совецкой 23",
+    "tel": 234344,
+    "passportCode": "HB3453453",
+    "passportNumber": "34654356356745"
+  }
+},
+{
+  "model": "main.property",
+  "pk": "288788d1-60f3-4c15-9bb9-eff30e54f3fa",
+  "fields": {
+    "dateOfOrder": "2020-12-06",
+    "name": "Дом",
+    "area": 500,
+    "rooms": 6,
+    "address": "Огоренко 7",
+    "price": 50000,
+    "seller": "deae2a80-330d-4830-9077-5dd126b433e1",
+    "ifSelled": false
+  }
+},
+{
+  "model": "main.property",
+  "pk": "68c17aa0-c614-4c05-b21c-657e8e01914e",
+  "fields": {
+    "dateOfOrder": "2020-12-11",
+    "name": "квартира",
+    "area": 40,
+    "rooms": 1,
+    "address": "Свиридова 14 к2",
+    "price": 30000,
+    "seller": "deae2a80-330d-4830-9077-5dd126b433e1",
+    "ifSelled": true
+  }
+},
+{
+  "model": "main.property",
+  "pk": "791aa45b-7cd0-460c-be8b-f6222bd018af",
+  "fields": {
+    "dateOfOrder": "2020-12-11",
+    "name": "квартира",
+    "area": 50,
+    "rooms": 2,
+    "address": "Советской 5 кв2",
+    "price": 300000,
+    "seller": "dcb56290-0e82-4034-b0bc-4011918316b5",
+    "ifSelled": false
+  }
+},
+{
+  "model": "main.property",
+  "pk": "8341d028-a5a2-4f6d-959b-9112064817d4",
+  "fields": {
+    "dateOfOrder": "2020-12-06",
+    "name": "дом",
+    "area": 323,
+    "rooms": 23,
+    "address": "Лесная 1",
+    "price": 234000,
+    "seller": "0e0b6525-06f8-4c69-8654-230ad405f6d9",
+    "ifSelled": true
+  }
+},
+{
+  "model": "main.property",
+  "pk": "a9357f27-a26f-4b6e-8bd6-fb1d0973c499",
+  "fields": {
+    "dateOfOrder": "2020-12-13",
+    "name": "земельное владение",
+    "area": 1000,
+    "rooms": 0,
+    "address": "Шишкина 111",
+    "price": 100000,
+    "seller": "deae2a80-330d-4830-9077-5dd126b433e1",
+    "ifSelled": false
+  }
+},
+{
+  "model": "main.property",
+  "pk": "ba19260d-ba21-429b-8f69-1e667a982d39",
+  "fields": {
+    "dateOfOrder": "2020-12-09",
+    "name": "квартира",
+    "area": 300,
+    "rooms": 5,
+    "address": "Ленина д.69",
+    "price": 500000,
+    "seller": "dcb56290-0e82-4034-b0bc-4011918316b5",
+    "ifSelled": false
+  }
+},
+{
+  "model": "main.property",
+  "pk": "e75fe979-c1f1-41de-8044-c076a47c3438",
+  "fields": {
+    "dateOfOrder": "2020-12-06",
+    "name": "Огород",
+    "area": 400,
+    "rooms": 0,
+    "address": "Огордная 11",
+    "price": 10000,
+    "seller": "dcb56290-0e82-4034-b0bc-4011918316b5",
+    "ifSelled": false
+  }
+},
+{
+  "model": "main.selledproperty",
+  "pk": "8f5ba9dd-7c77-48cf-b6a2-990a5bc20dd2",
+  "fields": {
+    "applicationCode": "8341d028-a5a2-4f6d-959b-9112064817d4",
+    "employee": "4dfc0d01-d3c6-4608-a56e-9daa91cde080",
+    "buyer": "99cdc5c2-2cd6-42d4-8b26-20dd7756ab4f",
+    "dateOfOperation": "2020-12-07",
+    "profit": 1000
+  }
+},
+{
+  "model": "main.selledproperty",
+  "pk": "9186b015-4e2f-4e21-a7be-d34ac633768d",
+  "fields": {
+    "applicationCode": "68c17aa0-c614-4c05-b21c-657e8e01914e",
+    "employee": "a2b8971a-1633-484c-9df2-fd877c37c219",
+    "buyer": "61cd8eb2-cf68-4a54-aa51-0975ea56fc8e",
+    "dateOfOperation": "2020-12-09",
+    "profit": 500
+  }
+}
+]

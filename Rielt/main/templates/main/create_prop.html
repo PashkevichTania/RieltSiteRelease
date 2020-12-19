@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    User forms
+{% endblock %}
+
+{% block content %}
+    <h1>Добавить недвижимость</h1>
+    <form method="post" id="prop">
+        {% csrf_token %}
+        {{ form_prop.dateOfOrder }}<br>
+        {{ form_prop.name }}<br>
+        {{ form_prop.area }}<br>
+        {{ form_prop.rooms }}<br>
+        {{ form_prop.address }}<br>
+        {{ form_prop.price }}<br>
+        <input type="hidden" name="seller" value="{{ user.clientsell.pk }}" />
+        <br>
+        <button type="submit" form="prop" class="btn btn-success mt-5">Добавить</button>
+        {% url 'user' as url_user %}
+        <a class="btn btn-primary active mt-5 ml-3" href="{{ url_user }}">Вернуться назад</a>
+        <span>{{ error_prop }}</span>
+    </form>
+{% endblock %}
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.20.1/bootstrap-vue.min.js"></script>
+    <script src="/static/empty.js"></script>
+{% endblock %}

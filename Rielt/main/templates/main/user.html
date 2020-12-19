@@ -1,0 +1,188 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    User
+{% endblock %}
+{% block link %}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/r-2.2.6/sc-2.0.3/datatables.min.css"/>
+    <style>
+        .red {
+            background-color: rgba(84, 245, 124, 0.78) !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Личный кабинет</h1>
+    {% if request.user.is_authenticated %}
+        <div class="container">
+            <div class="row d-flex justify-content-end">
+                <h3 class="align-bottom">Сейчас вы авторизованы как: <span
+                        class="font-weight-bold">{{ user.get_username }}</span></h3>
+                <a class="btn btn-sm btn-danger active ml-5" href="logout">Выйти</a>
+            </div>
+        </div>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col">
+                    {% if user.clientsell.fio %}
+                        <p>Вы зарегистрированы как продавец: {{ user.clientsell.fio }}</p>
+                        <p>Адрес: {{ user.clientsell.address }}</p>
+                        <p>Телефон: {{ user.clientsell.tel }}</p>
+                        <p>Код паспорта: {{ user.clientsell.passportCode }}</p>
+                        <p>Номер паспорта: {{ user.clientsell.passportNumber }}</p>
+                        {# <p class="align-middle"><a class="btn btn-info" href="{% url 'update_sell' user.clientsell.pk %}">редактировать</a></p>#}
+                        <p class="align-middle"><a class="btn btn-danger" href="{% url 'delete_sell' user.clientsell.pk %}">удалить</a></p>
+                        <a class="btn btn-primary mt-3" href="create_prop">Добавить недвижимость</a>
+                        {% if user.clientsell.property.name %}
+                            {{ user.clientsell.property.name }}
+                        {% endif %}
+                    {% else %}
+                        <a class="btn btn-primary mt-3" href="create_seller">Стать продавцом</a>
+                    {% endif %}
+                </div>
+                <div class="col">
+                    {% if user.clientbuy.fio %}
+                        <p>Вы зарегистрированы как покупатель: {{ user.clientbuy.fio }}</p>
+                        <p>Адрес: {{ user.clientbuy.address }}</p>
+                        <p>Телефон: {{ user.clientbuy.tel }}</p>
+                        <p>Код паспорта: {{ user.clientbuy.passportCode }}</p>
+                        <p>Номер паспорта: {{ user.clientbuy.passportNumber }}</p>
+                        {# <p class="align-middle"><a class="btn btn-info" href="{% url 'update_buy' user.clientbuy.pk %}">редактировать</a></p>#}
+                        <p class="align-middle"><a class="btn btn-danger" href="{% url 'delete_buy' user.clientbuy.pk %}">удалить</a></p>
+                    {% else %}
+                        <a class="btn btn-primary mt-3" href="create_buyer">Стать покупателем</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="container mt-5">
+            {% if prop %}
+                <h3>Моя недвижимость</h3>
+                <table class="table table-bordered table-dark mt-3" id="my_datatable1">
+                    <thead>
+                    <tr class="bg-warning text-dark">
+                        <th>Код заявки</th>
+                        <th>Дата составления заказа</th>
+                        <th>Наименование объекта</th>
+                        <th>Площадь м2</th>
+                        <th>Кол-во комнат</th>
+                        <th>Адрес</th>
+                        <th>Цена</th>
+                        <th>Продавец</th>
+                        <th>Состояние продажи</th>
+                        <th>Редактировать</th>
+                        <th>Удалить</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for el in prop %}
+                        <tr>
+                            <td>{{ el.applicationCode }}</td>
+                            <td>{{ el.dateOfOrder }}</td>
+                            <td>{{ el.name }}</td>
+                            <td>{{ el.area }}</td>
+                            <td>{{ el.rooms }}</td>
+                            <td>{{ el.address }}</td>
+                            <td>{{ el.price }}</td>
+                            <td>{{ el.seller }}</td>
+                            <td>{{ el.ifSelled }}</td>
+                            <td class="align-middle"><a class="btn btn-info" href="{% url 'update_prop' el.pk %}">редактировать</a></td>
+                            <td class="align-middle"><a class="btn btn-danger" href="{% url 'delete_prop' el.pk %}">удалить</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
+                {% endif %}
+        {% if buyprop %}
+            <h3>Купленая вами недвижимость</h3>
+                <table class="table table-bordered table-dark mt-3" id="my_datatable2">
+                    <thead>
+                    <tr class="bg-warning text-dark">
+                        <th scope="col">Код договора</th>
+                        <th scope="col">Код заявки</th>
+                        <th scope="col">Дата составления заказа</th>
+                        <th scope="col">Дата операции</th>
+                        <th scope="col">Сотрудник</th>
+                        <th scope="col">Покупатель</th>
+                        <th scope="col">Цена недвижимости</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                {% for el in buyprop %}
+                        <tr>
+                            <td>{{ el.contractCode }}</td>
+                            <td>{{ el.applicationCode }}</td>
+                            <td>{{ el.applicationCode.dateOfOrder }}</td>
+                            <td>{{ el.dateOfOperation }}</td>
+                            <td>{{ el.employee }}</td>
+                            <td>{{ el.buyer }}</td>
+                            <td>{{ el.applicationCode.price }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
+            {% endif %}
+        </div>
+    {% else %}
+        <a class="btn btn-primary active mt-3" href="user_reg">Зарегистрироваться</a><br>
+        <a class="btn btn-primary active mt-3" href="login_user">Войти</a>
+    {% endif %}
+{% endblock %}
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.20.1/bootstrap-vue.min.js"></script>
+    <script src="/static/empty.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/bs4/dt-1.10.22/b-1.6.5/b-colvis-1.6.5/sc-2.0.3/sb-1.0.1/sp-1.2.2/datatables.min.js">
+    </script>
+    <script>
+        $.extend($.fn.dataTable.defaults, {
+            language: {
+                "lengthMenu": "Показывать по _MENU_ записей на странице",
+                "emptyTable": "Нет данных в таблице",
+                "info": "Показаны страницы _PAGE_ из _PAGES_",
+                "infoEmpty": "Нет доступных записей",
+                "infoFiltered": "(Отфильтровано из _MAX_ записей)",
+                "loadingRecords": "Загрузка...",
+                "processing": "Процессинг...",
+                "search": "Поиск:",
+                "zeroRecords": "Извините, ничего не найдено",
+                "decimal": ",",
+                "thousands": ".",
+                "paginate": {
+                    "first": "Первая",
+                    "last": "Последняя",
+                    "next": "Следующая",
+                    "previous": "Предыдущая",
+                },
+                "aria": {
+                    "sortAscending": ": Сортировка по возрастанию",
+                    "sortDescending": ": Сортировка по убыванию"
+                }
+            },
+        });
+        var table2 = $('#my_datatable1').DataTable({
+            order: [[8, 'asc']],
+            "createdRow": function( row, data, dataIndex){
+                if( data[8] == "True" ){
+                    $(row).addClass('red');
+                }
+            }
+        });
+    </script>
+{% endblock %}

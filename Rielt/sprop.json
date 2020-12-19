@@ -1,0 +1,24 @@
+[
+{
+  "model": "main.selledproperty",
+  "pk": "8f5ba9dd-7c77-48cf-b6a2-990a5bc20dd2",
+  "fields": {
+    "applicationCode": "8341d028-a5a2-4f6d-959b-9112064817d4",
+    "employee": "4dfc0d01-d3c6-4608-a56e-9daa91cde080",
+    "buyer": "99cdc5c2-2cd6-42d4-8b26-20dd7756ab4f",
+    "dateOfOperation": "2020-12-07",
+    "profit": 1000
+  }
+},
+{
+  "model": "main.selledproperty",
+  "pk": "9186b015-4e2f-4e21-a7be-d34ac633768d",
+  "fields": {
+    "applicationCode": "68c17aa0-c614-4c05-b21c-657e8e01914e",
+    "employee": "a2b8971a-1633-484c-9df2-fd877c37c219",
+    "buyer": "61cd8eb2-cf68-4a54-aa51-0975ea56fc8e",
+    "dateOfOperation": "2020-12-09",
+    "profit": 500
+  }
+}
+]

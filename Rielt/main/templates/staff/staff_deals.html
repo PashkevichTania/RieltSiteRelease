@@ -1,0 +1,79 @@
+{% extends 'staff/base_staff.html' %}
+
+{% block title %}
+    Staff deals
+{% endblock %}
+
+
+{% block content %}
+    <div class="container" id="empty">
+        {% if update %}
+            <h3 class="mt-4 mb-3">Страница редактирования</h3>
+            <p><a class="btn btn-primary" href="{% url 'staff_deals' %}"><-- Вернуться назад</a></p>
+            <form id="update_data" method="post">
+                {% csrf_token %}
+                {{ form }}
+            </form>
+            <button form="update_data" type="submit" class="btn btn-primary mt-4">Обновить</button>
+
+        {% else %}
+            <h1>Составление сделки</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.applicationCode }}
+                <span class="help-block ml-3 text-muted">Выберите недвижимость</span><br><br>
+                {{ form.employee }}
+                <span class="help-block ml-3 text-muted">Выберите сотрудника</span><br><br>
+                {{ form.buyer }}
+                <span class="help-block ml-3 text-muted">Выберите покупателя</span><br><br>
+                {{ form.dateOfOperation }}<br>
+                {{ form.profit }}<br>
+                <button type="submit" class="btn btn-success mt-1">Добавить</button>
+                {% if error %}
+                    <div class="btn-danger mt-3 text-center w-50">
+                        {{ error }}<br>
+                        Возможно вы пытальсь добавить у же проданную недвижимость?
+                    </div>
+                {% endif %}
+            </form>
+            <table class="table table-bordered table-dark align-middle mt-4 my_datatable">
+                <thead>
+                <tr class="bg-warning text-dark">
+                    <th>Код договора</th>
+                    <th>Код заявки</th>
+                    <th>Сотрудник</th>
+                    <th>Покупатель</th>
+                    <th>Дата операции</th>
+                    <th>Прибыль</th>
+                    <th scope="col">Редактирование</th>
+                    <th scope="col">Удаление</th>
+                    <th scope="col">Резервное копирование</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for el in selled_prop %}
+                    <tr>
+                        <td class="align-middle">{{ el.contractCode }}</td>
+                        <td class="align-middle">{{ el.applicationCode }}</td>
+                        <td class="align-middle">{{ el.employee }}</td>
+                        <td class="align-middle">{{ el.buyer }}</td>
+                        <td class="align-middle">{{ el.dateOfOperation }}</td>
+                        <td class="align-middle">{{ el.profit }}</td>
+                        <td class="align-middle"><a class="btn btn-info" href="{% url 'update' el.pk %}">редактировать</a></td>
+                        <td class="align-middle"><a class="btn btn-danger" href="{% url 'delete' el.pk %}">удалить</a></td>
+                        <td class="align-middle"><a class="btn btn-warning" href="{% url 'backup' el.pk %}">Backup</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+            </div>
+        {% endif %}
+
+{% endblock %}
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.20.1/bootstrap-vue.min.js"></script>
+    <script src="/static/empty.js"></script>
+{% endblock %}
