@@ -95,13 +95,13 @@ def requests(request):
             price = 9 * 10 ** 10
         if rooms is not None and address is not None:
             property = Property.objects.filter(address__contains=address, rooms=rooms, ifSelled=False,
-                                               area__gt=area, price__lt=price)
+                                               area__gte=area, price__lte=price)
         elif rooms is not None:
             property = Property.objects.filter(rooms=rooms, ifSelled=False,
-                                               area__gt=area, price__lt=price)
+                                               area__gte=area, price__lte=price)
         elif address is not None:
             property = Property.objects.filter(address__contains=address, ifSelled=False,
-                                               area__gt=area, price__lt=price)
+                                               area__gte=area, price__lte=price)
         else:
             property = Property.objects.filter(ifSelled=False)
 
